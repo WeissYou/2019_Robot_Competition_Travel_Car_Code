@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -42,14 +42,14 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      <IncludePath>.\Drivers\CMSIS\Device\ST\STM32F4xx\Include;.\Drivers\CMSIS\Include;.\Drivers\CMSIS\RTOS\Template;.\Drivers\STM32F4xx_HAL_Driver\Inc;.\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;.\Inc;.\Inc\bsp;.\MDK-ARM\RTE\_Project;.\Src\bsp;D:\Program Files\Keil_v5\ARM\ARMCC\include</IncludePath>
-      <ReferencePath />
-      <LibraryPath />
-      <LibraryWPath />
-      <ExcludePath />
-      <SourcePath />
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>.\Drivers\CMSIS\Device\ST\STM32F4xx\Include;.\Drivers\CMSIS\Include;.\Drivers\CMSIS\RTOS\Template;.\Drivers\STM32F4xx_HAL_Driver\Inc;.\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;.\Inc;.\Inc\bsp;.\MDK-ARM\RTE\_Project;.\Src\bsp;D:\Program Files\Keil_v5\ARM\ARMCC\include</IncludePath>
+    <ReferencePath />
+    <LibraryPath />
+    <LibraryWPath />
+    <ExcludePath />
+    <SourcePath />
+  </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f401xc.h" />
     <ClInclude Include="Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f401xe.h" />
@@ -643,6 +643,9 @@
     <ClCompile Include="MDK-ARM\startup_stm32f407xx.s" />
     <ClInclude Include="MDK-ARM\RTE\_Project\RTE_Components.h" />
     <ClCompile Include="Src\adc.c" />
+    <ClCompile Include="Src\bsp\Control.c" />
+    <ClCompile Include="Src\bsp\Encoder.c" />
+    <ClCompile Include="Src\bsp\PID.c" />
     <ClCompile Include="Src\dma.c" />
     <ClCompile Include="Src\gpio.c" />
     <ClCompile Include="Src\main.c" />
@@ -665,4 +668,4 @@
     <ClCompile Include="Src\bsp\Track.c" />
     <ClInclude Include="Src\bsp\MPU6050.h" />
   </ItemGroup>
-  </Project>
+</Project>
