@@ -61,18 +61,10 @@ extern ADC_HandleTypeDef hadc1;
 extern DMA_HandleTypeDef hdma_adc1;
 
 extern TIM_HandleTypeDef htim1;
-extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim4;
-extern TIM_HandleTypeDef htim5;
 extern TIM_HandleTypeDef htim7;
-extern TIM_HandleTypeDef htim8;
-extern TIM_HandleTypeDef htim9;
-
-extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart2;
-extern UART_HandleTypeDef huart3;
-
+extern TIM_HandleTypeDef htim10;
+extern TIM_HandleTypeDef htim11;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -82,9 +74,9 @@ extern UART_HandleTypeDef huart3;
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-extern __IO uint8_t ADC_ConvertedValueLocal[12];
+//extern __IO uint8_t ADC_ConvertedValueLocal[12];
 // AD转换结果值
-extern uint32_t ADC_ConvertedValue[12];
+//extern uint32_t ADC_ConvertedValue[12];
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
@@ -93,96 +85,89 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void Lock_ADC_Data(void);
+void MX_TIM1_Init(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define Buzzer_Signal_Pin GPIO_PIN_2
-#define Buzzer_Signal_GPIO_Port GPIOE
-#define Buzzer_Pin GPIO_PIN_4
-#define Buzzer_GPIO_Port GPIOE
-#define Servo_1_Pin GPIO_PIN_5
-#define Servo_1_GPIO_Port GPIOE
-#define Servo_2_Pin GPIO_PIN_6
-#define Servo_2_GPIO_Port GPIOE
-#define Front_Sensor_8_Pin GPIO_PIN_0
-#define Front_Sensor_8_GPIO_Port GPIOC
-#define Front_Sensor_9_Pin GPIO_PIN_1
-#define Front_Sensor_9_GPIO_Port GPIOC
-#define Front_Sensor_10_Pin GPIO_PIN_2
-#define Front_Sensor_10_GPIO_Port GPIOC
-#define Front_Sensor_11_Pin GPIO_PIN_3
-#define Front_Sensor_11_GPIO_Port GPIOC
-#define Front_Sensor_1_Pin GPIO_PIN_2
-#define Front_Sensor_1_GPIO_Port GPIOA
-#define Front_Sensor_2_Pin GPIO_PIN_3
-#define Front_Sensor_2_GPIO_Port GPIOA
-#define Front_Sensor_3_Pin GPIO_PIN_4
-#define Front_Sensor_3_GPIO_Port GPIOA
-#define Front_Sensor_4_Pin GPIO_PIN_5
-#define Front_Sensor_4_GPIO_Port GPIOA
-#define Front_Sensor_5_Pin GPIO_PIN_6
-#define Front_Sensor_5_GPIO_Port GPIOA
-#define Front_Sensor_12_Pin GPIO_PIN_4
-#define Front_Sensor_12_GPIO_Port GPIOC
-#define Front_Sensor_6_Pin GPIO_PIN_0
-#define Front_Sensor_6_GPIO_Port GPIOB
-#define Front_Sensor_7_Pin GPIO_PIN_1
-#define Front_Sensor_7_GPIO_Port GPIOB
-#define Driver_IN2_Pin GPIO_PIN_8
-#define Driver_IN2_GPIO_Port GPIOE
-#define Driver_IN1_Pin GPIO_PIN_9
-#define Driver_IN1_GPIO_Port GPIOE
-#define Driver_IN4_Pin GPIO_PIN_10
-#define Driver_IN4_GPIO_Port GPIOE
-#define Driver_IN3_Pin GPIO_PIN_11
-#define Driver_IN3_GPIO_Port GPIOE
-#define MPU6050_TX_Pin GPIO_PIN_10
-#define MPU6050_TX_GPIO_Port GPIOB
-#define MPU6050_RX_Pin GPIO_PIN_11
-#define MPU6050_RX_GPIO_Port GPIOB
-#define Right_Sensor_2_Pin GPIO_PIN_15
-#define Right_Sensor_2_GPIO_Port GPIOB
-#define Right_Sensor_1_Pin GPIO_PIN_8
-#define Right_Sensor_1_GPIO_Port GPIOD
-#define Left_Sensor_2_Pin GPIO_PIN_9
-#define Left_Sensor_2_GPIO_Port GPIOD
-#define Left_Sensor_1_Pin GPIO_PIN_10
-#define Left_Sensor_1_GPIO_Port GPIOD
-#define Obstacle_Pin GPIO_PIN_9
-#define Obstacle_GPIO_Port GPIOC
+#define Left_Sensor_1_Pin GPIO_PIN_2
+#define Left_Sensor_1_GPIO_Port GPIOE
+#define KEY_1_Pin GPIO_PIN_3
+#define KEY_1_GPIO_Port GPIOE
+#define KEY_0_Pin GPIO_PIN_4
+#define KEY_0_GPIO_Port GPIOE
+#define Left_Sensor_3_Pin GPIO_PIN_6
+#define Left_Sensor_3_GPIO_Port GPIOE
+#define Left_Sensor_4_Pin GPIO_PIN_0
+#define Left_Sensor_4_GPIO_Port GPIOC
+#define Left_Sensor_2_Pin GPIO_PIN_2
+#define Left_Sensor_2_GPIO_Port GPIOC
+#define KEY_UP_Pin GPIO_PIN_0
+#define KEY_UP_GPIO_Port GPIOA
+#define Front_Sensor_Aout_Pin GPIO_PIN_1
+#define Front_Sensor_Aout_GPIO_Port GPIOA
+#define Right_Sensor_2_Pin GPIO_PIN_2
+#define Right_Sensor_2_GPIO_Port GPIOA
+#define Front_Sensor_D1_Pin GPIO_PIN_3
+#define Front_Sensor_D1_GPIO_Port GPIOA
+#define Right_Sensor_3_Pin GPIO_PIN_4
+#define Right_Sensor_3_GPIO_Port GPIOA
+#define Front_Sensor_D2_Pin GPIO_PIN_5
+#define Front_Sensor_D2_GPIO_Port GPIOA
+#define Right_Sensor_4_Pin GPIO_PIN_6
+#define Right_Sensor_4_GPIO_Port GPIOA
+#define Front_Sensor_D3_Pin GPIO_PIN_7
+#define Front_Sensor_D3_GPIO_Port GPIOA
+#define Right_Sensor_1_Pin GPIO_PIN_4
+#define Right_Sensor_1_GPIO_Port GPIOC
+#define Motor_IN2_Pin GPIO_PIN_8
+#define Motor_IN2_GPIO_Port GPIOE
+#define Motor_IN1_Pin GPIO_PIN_9
+#define Motor_IN1_GPIO_Port GPIOE
+#define Motor_IN4_Pin GPIO_PIN_10
+#define Motor_IN4_GPIO_Port GPIOE
+#define Motor_IN3_Pin GPIO_PIN_11
+#define Motor_IN3_GPIO_Port GPIOE
+#define Limit_High_Pin GPIO_PIN_13
+#define Limit_High_GPIO_Port GPIOE
+#define Limit_Low_Pin GPIO_PIN_14
+#define Limit_Low_GPIO_Port GPIOE
+#define Remote_CLK_Pin GPIO_PIN_12
+#define Remote_CLK_GPIO_Port GPIOB
+#define Remote_DO_Pin GPIO_PIN_13
+#define Remote_DO_GPIO_Port GPIOB
+#define Remote_DI_Pin GPIO_PIN_14
+#define Remote_DI_GPIO_Port GPIOB
+#define Remote_CS_Pin GPIO_PIN_15
+#define Remote_CS_GPIO_Port GPIOB
+#define Obstacle_Right_Pin GPIO_PIN_14
+#define Obstacle_Right_GPIO_Port GPIOD
+#define Obstacle_Left_Pin GPIO_PIN_15
+#define Obstacle_Left_GPIO_Port GPIOD
+#define Servo_1_Pin GPIO_PIN_6
+#define Servo_1_GPIO_Port GPIOC
+#define Servo_2_Pin GPIO_PIN_7
+#define Servo_2_GPIO_Port GPIOC
+#define Servo_3_Pin GPIO_PIN_8
+#define Servo_3_GPIO_Port GPIOC
 #define Debug_TX_Pin GPIO_PIN_9
 #define Debug_TX_GPIO_Port GPIOA
 #define Debug_RX_Pin GPIO_PIN_10
 #define Debug_RX_GPIO_Port GPIOA
-#define LED_1_Pin GPIO_PIN_10
-#define LED_1_GPIO_Port GPIOC
-#define LED_2_Pin GPIO_PIN_11
-#define LED_2_GPIO_Port GPIOC
-#define LED_3_Pin GPIO_PIN_12
-#define LED_3_GPIO_Port GPIOC
-#define LED_4_Pin GPIO_PIN_0
-#define LED_4_GPIO_Port GPIOD
-#define LED_5_Pin GPIO_PIN_1
-#define LED_5_GPIO_Port GPIOD
-#define LED_6_Pin GPIO_PIN_2
-#define LED_6_GPIO_Port GPIOD
-#define LED_7_Pin GPIO_PIN_3
-#define LED_7_GPIO_Port GPIOD
-#define LED_8_Pin GPIO_PIN_4
-#define LED_8_GPIO_Port GPIOD
-#define Compass_TX_Pin GPIO_PIN_5
-#define Compass_TX_GPIO_Port GPIOD
-#define Compass_RX_Pin GPIO_PIN_6
-#define Compass_RX_GPIO_Port GPIOD
-#define LED_9_Pin GPIO_PIN_8
-#define LED_9_GPIO_Port GPIOB
-#define LED_10_Pin GPIO_PIN_9
-#define LED_10_GPIO_Port GPIOB
-#define LED_11_Pin GPIO_PIN_0
-#define LED_11_GPIO_Port GPIOE
-#define LED_12_Pin GPIO_PIN_1
-#define LED_12_GPIO_Port GPIOE
+#define Buzzer_Signal_Pin GPIO_PIN_4
+#define Buzzer_Signal_GPIO_Port GPIOD
+#define RGB_B_Pin GPIO_PIN_5
+#define RGB_B_GPIO_Port GPIOD
+#define RGB_G_Pin GPIO_PIN_6
+#define RGB_G_GPIO_Port GPIOD
+#define RGB_R_Pin GPIO_PIN_7
+#define RGB_R_GPIO_Port GPIOD
+#define Stepper_DIR_Pin GPIO_PIN_6
+#define Stepper_DIR_GPIO_Port GPIOB
+#define Stepper_CP_Pin GPIO_PIN_8
+#define Stepper_CP_GPIO_Port GPIOB
+#define Stepper_EN_Pin GPIO_PIN_0
+#define Stepper_EN_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
